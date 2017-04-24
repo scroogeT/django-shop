@@ -1,5 +1,4 @@
 from django.views.generic import ListView, DetailView
-
 from shop.models import *
 
 
@@ -13,11 +12,15 @@ class BookListView(ListView):
 
     template_name = 'shop/book_list.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(BookListView, self).get_context_data(**kwargs)
-        context['title'] = u'Каталог'
 
-        return context
+class AuthorListView(BookListView):
+    def get_queryset(self):
+        return Book.objects.filter(authors__pk=self.kwargs['pk'])
+
+
+class CategoryListView(BookListView):
+    def get_queryset(self):
+        return Book.objects.filter(categories__pk=self.kwargs['pk'])
 
 
 class BookDeatilView(DetailView):

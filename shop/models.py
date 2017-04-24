@@ -14,6 +14,10 @@ class Author(models.Model):
         verbose_name_plural = u'Авторы'
 
 
+    def get_absolute_url(self):
+        return reverse('shop:author_list', kwargs={'pk': self.id})
+
+
 class Category(models.Model):
     name = models.CharField(verbose_name=u'Категория', max_length=50)
 
@@ -24,6 +28,10 @@ class Category(models.Model):
         ordering = ('name',)
         verbose_name = u'Категория'
         verbose_name_plural = u'Категории'
+
+
+    def get_absolute_url(self):
+        return reverse('shop:category_list', kwargs={'pk': self.id})
 
 
 class Book(models.Model):
@@ -50,3 +58,4 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:book_detail', kwargs={'pk': self.id})
+
