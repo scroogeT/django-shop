@@ -6,14 +6,31 @@
 
 {% block content %}
     <h1>{{ book.title }}</h1>
+
+    <p><b>Авторы: </b>
+        {% for author in book.authors.all %}
+            <a href="#">{{ author }}</a> |
+        {% endfor %}
+    </p>
+
     <p><b>Год:</b> {{ book.year }}</p>
     <p><b>ISBN:</b> {{ book.isbn }}</p>
     <p><b>Издательство:</b> {{ book.publisher }}</p>
     <p><b>Количество страниц:</b> {{ book.page_num }}</p>
+
+    <p><b>Описание:</b><br>
+        {{ book.description }}
+    </p>
 
     {% if book.in_stock %}
         <p><i>Товар в наличии</i></p>
     {% else %}
         <p><i>Товара нет в наличии</i></p>
     {% endif %}
+
+    <ul>
+    {% for category in book.categories.all %}
+        <li><a href="#">#{{ category }}</a></li>
+    {% endfor %}
+    </ul>
 {% endblock %}
