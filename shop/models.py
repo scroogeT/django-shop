@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -31,7 +32,7 @@ class Book(models.Model):
     isbn = models.CharField(verbose_name=u'ISBN', max_length=20, unique=True, db_index=True)
 
     publisher = models.CharField(verbose_name=u'Издательство', max_length=50, db_index=True, blank=True)
-    page_num = models.IntegerField(verbose_name=    u'Количество страниц', blank=True)
+    page_num = models.IntegerField(verbose_name=u'Количество страниц', blank=True)
     description = models.TextField(verbose_name=u'Описание', blank=True)
     in_stock = models.BooleanField(verbose_name=u'В наличии', default=True, db_index=True)
     # photo = models.FileField(verbose_name=u'Фото', default=)
@@ -46,3 +47,6 @@ class Book(models.Model):
         ordering = ('title', 'year', )
         verbose_name = u'Книга'
         verbose_name_plural = u'Книги'
+
+    def get_absolute_url(self):
+        return reverse('shop:book_detail', kwargs={'pk': self.id})

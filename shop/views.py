@@ -1,6 +1,4 @@
-from django.shortcuts import render
-from django.http import Http404
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from shop.models import *
 
@@ -9,7 +7,6 @@ class BookListView(ListView):
     """
     Каталог статей
     """
-
     model = Book
     context_object_name = 'books'
     paginate_by = 10
@@ -21,3 +18,10 @@ class BookListView(ListView):
         context['title'] = u'Каталог'
 
         return context
+
+
+class BookDeatilView(DetailView):
+    """
+    Описание книги
+    """
+    model = Book
