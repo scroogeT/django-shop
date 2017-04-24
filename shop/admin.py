@@ -1,19 +1,25 @@
 from django.contrib import admin
-from shop.models import Author, Category, Book
+from shop import models
 
 
+# TODO: Add separate search for publisher field
+# TODO: Do something with authors viewing
+
+@admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'year', 'publisher', 'in_stock', )
+    list_filter = ('in_stock', )
+    search_fields = ('title', )
+    list_per_page = 50
 
 
+@admin.register(models.Author)
 class AuthorAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', )
+    list_per_page = 50
 
 
+@admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Book, BookAdmin)
-admin.site.register(Author, AuthorAdmin)
-admin.site.register(Category, CategoryAdmin)
+    list_display = ('name', )
+    list_per_page = 50

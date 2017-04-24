@@ -4,6 +4,9 @@ from django.db import models
 class Author(models.Model):
     name = models.CharField(verbose_name=u'Автор', max_length=100)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         ordering = ('name', )
         verbose_name = u'Автор'
@@ -12,6 +15,9 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(verbose_name=u'Категория', max_length=50)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         ordering = ('name',)
@@ -32,6 +38,9 @@ class Book(models.Model):
 
     authors = models.ManyToManyField(Author, blank=True)
     categories = models.ManyToManyField(Category, blank=True)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         ordering = ('title', 'year', )
