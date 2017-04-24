@@ -35,7 +35,7 @@ class Book(models.Model):
     page_num = models.IntegerField(verbose_name=u'Количество страниц', blank=True)
     description = models.TextField(verbose_name=u'Описание', blank=True)
     in_stock = models.BooleanField(verbose_name=u'В наличии', default=True, db_index=True)
-    # photo = models.FileField(verbose_name=u'Фото', default=)
+    #photo = models.FileField(verbose_name=u'Фото',, default=)
 
     authors = models.ManyToManyField(Author, blank=True)
     categories = models.ManyToManyField(Category, blank=True)

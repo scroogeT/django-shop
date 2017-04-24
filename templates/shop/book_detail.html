@@ -1,0 +1,19 @@
+{% extends "shop/shop_base.html" %}
+
+{% block title %}
+    Книга '{{ title }}'
+{% endblock %}
+
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    <p><b>Год:</b> {{ book.year }}</p>
+    <p><b>ISBN:</b> {{ book.isbn }}</p>
+    <p><b>Издательство:</b> {{ book.publisher }}</p>
+    <p><b>Количество страниц:</b> {{ book.page_num }}</p>
+
+    {% if book.in_stock %}
+        <p><i>Товар в наличии</i></p>
+    {% else %}
+        <p><i>Товара нет в наличии</i></p>
+    {% endif %}
+{% endblock %}
