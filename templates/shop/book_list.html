@@ -10,4 +10,24 @@
             <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
         </ul>
     {% endfor %}
+
+    <div class="paginator">
+        <div class="prev">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"> &laquo; Предыдущая </a>
+            {% else %}
+            <p class="arrow"> &laquo; Предыдущая </p>
+            {% endif %}
+        </div>
+
+        <div><p>Страница {{ page_obj.number }}</p></div>
+
+        <div class="next">
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}"> Следующая &raquo; </a>
+            {% else %}
+                <p class="arrow"> Следующая &raquo; </p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
