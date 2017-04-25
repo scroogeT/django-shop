@@ -6,9 +6,24 @@
 
 {% block content %}
     {% for book in books %}
-        <ul>
-            <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
-        </ul>
+        <div class="book_preview">
+            {% if book.photo.url != None %}
+                <a href="{{ book.get_absolute_url }}">
+                    <img src="{{ book.photo.url }}" class="cover_preview">
+                </a>
+            {% endif %}
+
+            <div class="authors">
+                {% for author in book.authors.all %}
+                    {% if book.authors.first != author %}
+                        |
+                    {% endif %}
+                    <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+                {% endfor %}
+            </div>
+
+            <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        </div>
     {% endfor %}
 
     <div class="paginator">
