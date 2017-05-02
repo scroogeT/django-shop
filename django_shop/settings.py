@@ -3,8 +3,8 @@ import json
 
 # Utilities
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(BASE_DIR)
 
 try:
     with open(os.path.join(BASE_DIR, 'secrets.json')) as handle:
@@ -25,11 +25,7 @@ SECRET_KEY = str(SECRETS['secret_key'])
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = '/media/'
+ALLOWED_HOSTS = ['projects', '127.0.0.1']
 
 INSTALLED_APPS = [
     'shop',
@@ -81,7 +77,7 @@ WSGI_APPLICATION = 'django_shop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'book_shop',
+        'NAME': SECRETS.get('db_name', ''),
         'USER': SECRETS.get('db_user', ''),
         'PASSWORD': SECRETS.get('db_password', ''),
         'HOST': SECRETS.get('db_host', ''),
@@ -126,6 +122,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

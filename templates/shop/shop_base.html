@@ -1,17 +1,36 @@
-<html>
-    <head>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %} | Книга</title>
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
     </head>
     <body>
-        <header>
+        <head>
+        </head>
 
-        </header>
         <main>
-            {% block content %}
-            {% endblock %}
+            <div class="container">
+            <div class="col-md-12">
+                <h1 class="page-header"><b>Hello World!</b></h1>
+            </div>
+
+                {% block content %}
+                {% endblock %}
+            </div>
         </main>
+
         <footer>
 
         </footer>
+
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
     </body>
 </html>

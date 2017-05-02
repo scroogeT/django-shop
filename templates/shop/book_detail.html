@@ -1,12 +1,22 @@
 {% extends "shop/shop_base.html" %}
 
 
-{% block title %}Книга '{{ title }}'{% endblock %}
+{% block title %}Книга {{ book.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ book.title }}</h1>
+    <div class="col-md-4" style="margin-top: 20px">
+        <img src="{{ book.photo.url }}" class="img-thumbnail" height="300">
+        <ul class="list-group">
+            {% for category in book.categories.all %}
+                <li class="list-group-item" style="border: none">
+                    <a href="{{ category.get_absolute_url }}">#{{ category }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-    <img src="{{ book.photo.url }}">
+    <div class="col-md-8">
+    <h2 class="page-header" style="margin-top: 20px"><b>{{ book.title }}</b></h2>
 
     <p><b>Авторы: </b>
         {% for author in book.authors.all %}
@@ -19,19 +29,21 @@
     <p><b>Издательство:</b> {{ book.publisher }}</p>
     <p><b>Количество страниц:</b> {{ book.page_num }}</p>
 
-    <p><b>Описание:</b><br>
+    <p><b>Описание:</b></p>
+    <p>
         {{ book.description }}
     </p>
 
-    {% if book.in_stock %}
-        <p><i>Товар в наличии</i></p>
-    {% else %}
-        <p><i>Товара нет в наличии</i></p>
-    {% endif %}
 
-    <ul>
-    {% for category in book.categories.all %}
-        <li><a href="{{ category.get_absolute_url }}">#{{ category }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="pull-left">
+        <p><b>{{ book.price }} руб.</b></p>
+    </div>
+
+    <div class="pull-right">
+        {% if book.in_stock %}
+            <p class="text-right"><b>Товар в наличии</b></p>
+        {% else %}
+            <p class="text-right text-muted">Товара нет в наличии</p>
+        {% endif %}
+    </div>
 {% endblock %}
