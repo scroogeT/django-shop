@@ -13,37 +13,46 @@
                 </li>
             {% endfor %}
         </ul>
+
+        <hr style="margin-top: 5px">
+        <button type="button" class="btn btn-lg btn-default {% if not book.in_stock %}disabled{% endif %}">
+            <span class="glyphicon glyphicon-shopping-cart"></span> | В корзину</button>
+
     </div>
 
     <div class="col-md-8">
-    <h2 class="page-header" style="margin-top: 20px"><b>{{ book.title }}</b></h2>
+        <h2 class="page-header" style="margin-top: 20px"><b>{{ book.title }}</b></h2>
 
-    <p><b>Авторы: </b>
-        {% for author in book.authors.all %}
-            <a href=" {{ author.get_absolute_url }}">{{ author }}</a> |
-        {% endfor %}
-    </p>
+        <p><b>Авторы: </b>
+            {% for author in book.authors.all %}
+                <a href=" {{ author.get_absolute_url }}">{{ author }}</a> |
+            {% endfor %}
+        </p>
 
-    <p><b>Год:</b> {{ book.year }}</p>
-    <p><b>ISBN:</b> {{ book.isbn }}</p>
-    <p><b>Издательство:</b> {{ book.publisher }}</p>
-    <p><b>Количество страниц:</b> {{ book.page_num }}</p>
+        <p><b>Год:</b> {{ book.year }}</p>
+        <p><b>ISBN:</b> {{ book.isbn }}</p>
+        <p><b>Издательство:</b> {{ book.publisher }}</p>
+        <p><b>Количество страниц:</b> {{ book.page_num }}</p>
 
-    <p><b>Описание:</b></p>
-    <p>
-        {{ book.description }}
-    </p>
+        <p><b>Описание:</b></p>
+        <p>
+            {{ book.description }}
+        </p>
 
 
-    <div class="pull-left">
-        <p><b>{{ book.price }} руб.</b></p>
-    </div>
+        <div class="pull-left">
+            <p class="{% if not book.in_stock %}text-muted{% endif %}"><b>{{ book.price }} руб.</b></p>
+        </div>
 
-    <div class="pull-right">
-        {% if book.in_stock %}
-            <p class="text-right"><b>Товар в наличии</b></p>
-        {% else %}
-            <p class="text-right text-muted">Товара нет в наличии</p>
-        {% endif %}
+        <div class="pull-right">
+            {% if book.in_stock %}
+                <p class="text-right"><b>Товар в наличии</b></p>
+            {% else %}
+                <p class="text-right text-muted">Товара нет в наличии</p>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+
     </div>
 {% endblock %}

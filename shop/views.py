@@ -14,11 +14,17 @@ class BookListView(ListView):
 
 
 class AuthorListView(BookListView):
+    """
+    Выборка каталога по автору
+    """
     def get_queryset(self):
         return Book.objects.filter(authors__pk=self.kwargs['pk'])
 
 
 class CategoryListView(BookListView):
+    """
+    Выборка каталога по категории
+    """
     def get_queryset(self):
         return Book.objects.filter(categories__pk=self.kwargs['pk'])
 

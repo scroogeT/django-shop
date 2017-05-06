@@ -1,0 +1,22 @@
+<!--
+{% block javascript %}
+    <script>
+        $("#id_username").change(function () {
+            var username = $this.val();
+
+            $.ajax({
+                url: {% url "validate_username" %},
+                data: {
+                    'username': username
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.is_taken) {
+                        alert("Пользователь с таким именем уже существует!")
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
+-->
