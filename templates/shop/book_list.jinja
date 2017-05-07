@@ -1,0 +1,36 @@
+{% extends "shop/shop_base.jinja" %}
+{% from "shop/macros/_pagination.jinja" import pagination %}
+
+{% block title %}Каталог{% endblock %}
+
+
+{% block content %}
+    {% for book in books %}
+        <div class="book_preview col-sm-3">
+            {% if book.photo.url != None %}
+                <div style="height: 220px; width: 150px; border: 1px solid darkgray;">
+                    <a href="{{ book.get_absolute_url() }}">
+                        <img src="{{ book.photo.url }}" class="cover_preview center-block" style="max-width: 150px; max-height: 220px;" >
+                    </a>
+                </div>
+            {% endif %}
+
+            <div class="description center-block" style="height: 75px; margin-bottom: 30px;">
+                <div class="authors">
+                    {% for author in book.authors.all() %}
+                       {% if book.authors.first != author %}
+                           |
+                      {% endif %}
+                      <a href="{{ author.get_absolute_url() }}">{{ author }}</a>
+                    {% endfor %}
+                </div>
+
+                <a href="{{ book.get_absolute_url() }}">{{ book.title }}</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="clearfix"></div>
+
+    {{ pagination(page_obj) }}
+{% endblock %}

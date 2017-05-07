@@ -1,12 +1,10 @@
-{% extends 'shop/shop_base.html' %}
+{% extends 'shop/shop_base.jinja' %}
 
-{% load widget_tweaks %}
-{% load staticfiles %}
+{% include widget_tweaks %}
 
 {# TODO: Пофиксить отображение ошибок (переписать в макрос) #}
 
 {% block title %}Регистрация{% endblock %}
-
 
 
 {% block content %}
@@ -19,7 +17,7 @@
         <div class="form-group" id="block-username">
             <label for="id_username" class="col-sm-3 control-label">Логин</label>
             <div class="col-sm-9">
-                {% render_field form.username class="form-control" placeholder="Введите логин" %}
+                {{ render_field(form.username, class="form-control", placeholder="Введите логин") }}
 
                 {% if form.username.errors %}
                     <p id="err-username" class="help-block errors">{{ form.username.errors.as_text }}</p>
@@ -71,11 +69,11 @@
 
 
 {% block stylesheet %}
-    <link href="{% static 'css/accounts/signup.css' %}" rel="stylesheet">
+    <link href="{{ static('css/accounts/signup.css') }}" rel="stylesheet">
 {% endblock %}
 
 
 
 {% block javascript %}
-    <script src="{% static 'js/accounts/signup.js' %}"></script>
+    <script src="{{ static('js/accounts/signup.js')}}"></script>
 {% endblock %}

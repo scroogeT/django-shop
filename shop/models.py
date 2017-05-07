@@ -13,7 +13,6 @@ class Author(models.Model):
         verbose_name = u'Автор'
         verbose_name_plural = u'Авторы'
 
-
     def get_absolute_url(self):
         return reverse('shop:author_list', kwargs={'pk': self.id})
 
@@ -28,7 +27,6 @@ class Category(models.Model):
         ordering = ('name',)
         verbose_name = u'Категория'
         verbose_name_plural = u'Категории'
-
 
     def get_absolute_url(self):
         return reverse('shop:category_list', kwargs={'pk': self.id})
@@ -59,4 +57,3 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:book_detail', kwargs={'pk': self.id})
-

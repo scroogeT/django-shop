@@ -1,3 +1,6 @@
+.form-horizontal {
+    background: darkgray;
+}
 
 *[role="form"] {
     max-width: 530px;

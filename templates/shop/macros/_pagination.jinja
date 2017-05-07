@@ -1,0 +1,22 @@
+{% macro pagination(page_obj) %}
+    <hr>
+    <div class="paginator">
+        <div class="prev col-sm-2 col-sm-offset-3">
+            {% if page_obj.has_previous() %}
+            <a href="?page={{ page_obj.previous_page_number() }}"> &laquo; Предыдущая </a>
+            {% else %}
+            <p class="arrow"> &laquo; Предыдущая </p>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-2"><p><b>Страница {{ page_obj.number }}</b></p></div>
+
+        <div class="next col-sm-2">
+            {% if page_obj.has_next() %}
+                <a href="?page={{ page_obj.next_page_number() }}"> Следующая &raquo; </a>
+            {% else %}
+                <p class="arrow"> Следующая &raquo; </p>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}

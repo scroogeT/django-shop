@@ -8,9 +8,9 @@ class BookListView(ListView):
     """
     model = Book
     context_object_name = 'books'
-    paginate_by = 10
+    paginate_by = 20
 
-    template_name = 'shop/book_list.html'
+    template_name = 'shop/book_list.jinja'
 
 
 class AuthorListView(BookListView):
@@ -34,3 +34,5 @@ class BookDeatilView(DetailView):
     Описание книги
     """
     model = Book
+    #template_engine =
+    template_name = 'shop/book_detail.jinja'
