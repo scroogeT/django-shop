@@ -1,7 +1,5 @@
 {% extends 'shop/shop_base.jinja' %}
 
-{% include widget_tweaks %}
-
 {# TODO: Пофиксить отображение ошибок (переписать в макрос) #}
 
 {% block title %}Регистрация{% endblock %}
@@ -12,7 +10,7 @@
 
     <form class="form-horizontal" role="form" method="post">
 
-        {% csrf_token %}
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
         <div class="form-group" id="block-username">
             <label for="id_username" class="col-sm-3 control-label">Логин</label>

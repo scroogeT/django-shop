@@ -1,4 +1,6 @@
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from shop.models import *
 
 
@@ -17,6 +19,9 @@ class AuthorListView(BookListView):
     """
     Выборка каталога по автору
     """
+
+    #login_url = '/login/'
+    #redirect_field_name = ''
     def get_queryset(self):
         return Book.objects.filter(authors__pk=self.kwargs['pk'])
 
@@ -34,5 +39,4 @@ class BookDeatilView(DetailView):
     Описание книги
     """
     model = Book
-    #template_engine =
     template_name = 'shop/book_detail.jinja'

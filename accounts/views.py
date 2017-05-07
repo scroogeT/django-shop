@@ -1,7 +1,12 @@
+from django.http import HttpResponseRedirect
+from django.views.generic.base import View
 from django.views.generic.edit import FormView
 from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
+
 from accounts.forms import SignUpForm
-from django.urls import reverse_lazy
 
 
 class SignUpView(FormView):
@@ -16,3 +21,23 @@ class SignUpView(FormView):
 
 def signup_success(request):
     return render(request, 'accounts/signup_success.jinja')
+
+
+class SignInView(FormView):
+    form_class = AuthenticationForm
+    success_url = reverse_lazy('shop:book_list')
+    template_name = 'accounts/signin.jinja'
+
+    def form_valid(self, form):
+        self.user = form.get_user()
+
+        login(self.request, self.user)
+        return super(SignInView, self).form_valid(form)
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        print("logout!!!!!!")
+
+        return HttpResponseRedirect(reverse_lazy('shop:book_list'))
