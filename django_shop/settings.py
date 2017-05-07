@@ -61,12 +61,15 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
-            "match_extension": ".jinja",
+            'filters': {
+                'add_class': 'widget_tweaks.templatetags.widget_tweaks.add_class',
+                'attr': 'widget_tweaks.templatetags.widget_tweaks.set_attr',
+            },
         }
     },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

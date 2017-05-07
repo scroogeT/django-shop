@@ -6,16 +6,15 @@
 
 
 {% block content %}
-    <h2 class="text-center">Регистрация</h2>
-
     <form class="form-horizontal" role="form" method="post">
+        <div><h2 class="form-header">Регистрация</h2></div>
 
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
         <div class="form-group" id="block-username">
             <label for="id_username" class="col-sm-3 control-label">Логин</label>
             <div class="col-sm-9">
-                {{ render_field(form.username, class="form-control", placeholder="Введите логин") }}
+                {{ form.username | add_class("form-control") | attr("placeholder:Введите логин") }}
 
                 {% if form.username.errors %}
                     <p id="err-username" class="help-block errors">{{ form.username.errors.as_text }}</p>
@@ -26,7 +25,7 @@
         <div class="form-group" id="block-email">
             <label for="id_email" class="col-sm-3 control-label">Email</label>
             <div class="col-sm-9">
-                {% render_field form.email class="form-control" placeholder="Введите Email в формате john_snow@gmail.com" %}
+                {{ form.email | add_class("form-control") | attr("placeholder:Введите Email в формате john_snow@gmail.com") }}
 
                 {% if form.email.errors %}
                     <p id="err-email" class="help-block errors">{{ form.email.errors.as_text }}</p>
@@ -37,7 +36,7 @@
         <div class="form-group" id="block-password1">
             <label for="id_password1" class="col-sm-3 control-label">Пароль</label>
             <div class="col-sm-9">
-                {% render_field form.password1 class="form-control" placeholder="Не менее 8 символов" %}
+                {{ form.password1 | add_class("form-control") | attr("placeholder:Не менее 8 символов") }}
 
                 {% if form.password1.errors %}
                     <p id="err-password1" class="help-block errors">{{ form.password1.errors.as_text }}</p>
@@ -48,7 +47,7 @@
         <div class="form-group" id="block-password2">
             <label for="id_password2" class="col-sm-3 control-label">Пароль (повторно)</label>
             <div class="col-sm-9">
-                {% render_field form.password2 class="form-control" placeholder="Подтвердите пароль" %}
+                {{ form.password2 | add_class("form-control") | attr("placeholder:Подтвердите пароль") }}
 
                 {% if form.password2.errors %}
                     <p id="err-password2" class="help-block errors">{{ form.password2.errors.as_text }}</p>
@@ -65,11 +64,9 @@
 {% endblock %}
 
 
-
 {% block stylesheet %}
     <link href="{{ static('css/accounts/signup.css') }}" rel="stylesheet">
 {% endblock %}
-
 
 
 {% block javascript %}

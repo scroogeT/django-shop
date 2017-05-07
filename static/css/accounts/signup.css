@@ -1,5 +1,9 @@
 .form-horizontal {
-    background: darkgray;
+    background: #eeeeee;
+}
+
+.form-header {
+    padding-left: 30px;
 }
 
 *[role="form"] {

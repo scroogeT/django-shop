@@ -1,0 +1,49 @@
+{% extends 'shop/shop_base.jinja' %}
+
+
+{% block title %}Логин{% endblock %}
+
+
+{% block content %}
+    <form class="form-horizontal" role="form" method="post">
+        <div><h2 class="form-header">Войти</h2></div>
+
+        {% if form.errors %}
+            <div class="col-md-9 col-sm-offset-3">
+                <p class="help-block errors"><b>Неверный логин или пароль!</b></p>
+            </div>
+        {% endif %}
+        
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+        <div class="form-group" id="block-username">
+            <label for="id_username" class="col-sm-3 control-label">Логин</label>
+            <div class="col-sm-9">
+                {{ form.username | add_class("form-control") | attr("placeholder:Введите логин") }}
+            </div>
+        </div>
+
+        <div class="form-group" id="block-password">
+            <label for="id_password" class="col-sm-3 control-label">Пароль</label>
+            <div class="col-sm-9">
+                {{ form.password | add_class("form-control") | attr("placeholder:Введите пароль") }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary btn-block">Войти</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block stylesheet %}
+    <link href="{{ static('css/accounts/signup.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="{{ static('js/accounts/signin.js')}}"></script>
+{% endblock %}
