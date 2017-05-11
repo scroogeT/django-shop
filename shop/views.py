@@ -14,6 +14,11 @@ class BookListView(ListView):
 
     template_name = 'shop/book_list.jinja'
 
+    def get_context_data(self, **kwargs):
+        c = super(BookListView, self).get_context_data(**kwargs)
+        user = self.request.user
+        return c
+
 
 class AuthorListView(BookListView):
     """

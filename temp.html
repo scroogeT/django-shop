@@ -1,22 +1,26 @@
-<!--
-{% block javascript %}
-    <script>
-        $("#id_username").change(function () {
-            var username = $this.val();
+<div class="row">
+                    <div class="col-sm-6 vbottom">
+                <div class="col-sm-">
+                    <img src="{{ static('img/book_logo.jpg') }}" height="100px" style="margin-top: 30px">
+                </div>
 
-            $.ajax({
-                url: {% url "validate_username" %},
-                data: {
-                    'username': username
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.is_taken) {
-                        alert("Пользователь с таким именем уже существует!")
-                    }
-                }
-            });
-        });
-    </script>
-{% endblock %}
--->
+                <div class="col-sm-4" style="padding-left: 20px">
+                    <h1 class="page-header">Книга</h1>
+                    <p class="text-left">Описание сайта</p>
+                </div>
+                        </div>
+
+                <div class="col-sm-6 vbottom">
+                    <div class="col-sm-12">
+                        <p>{{ request.user }}</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <nav class="" style="vertical-align: bottom;">
+                            <ul class="list-inline">
+                                <li><a href="#">Главная</a></li>
+                                <li><a href="#">Каталог</a></li>
+                                <li><a href="#">О нас</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>

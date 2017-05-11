@@ -7,15 +7,52 @@
         <title>{% block title %}{% endblock %} | Книга</title>
 
         <link href="{{ static('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ static ('css/shop/base.css') }}" rel="stylesheet">
         {% block stylesheet %}{% endblock %}
 
     </head>
     <body>
         <header>
             <div class="container">
-                <div class="col-md-12">
-                    <h1 class="page-header"><b>Hello World!</b></h1>
+                <div class="footer-main row">
+                    <div class="col-md-2">
+                        <img class="footer-logo" src="{{ static('img/book_logo.jpg') }}" height="100px">
+                    </div>
+
+                    <div class="footer-left col-sm-4">
+                        <h1 class="page-header"><b>Книга</b></h1>
+                        <p class="text-left"><i>Да, вы угадали, мы продаем книги</i></p>
+                    </div>
+
+                    <div class="footer-menu col-md-4 col-md-offset-2 row">
+                        <div class="user-bar-label">
+                            <p>Сука блядская</p>
+                        </div>
+
+                        <div class="user-bar">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-default inline-button dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="#">Войти</a></li>
+                                    <li><a href="#">Зарегистрироваться</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <nav class="menu">
+                            <ul class="list-inline list-unstyled">
+                                <li class="menu-item active-item"><a href="#">Главная</a></li>
+                                <li class="menu-item"><a href="#">Каталог</a></li>
+                                <li class="menu-item"><a href="#">О нас</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
+
+                <div class="clearfix"></div>
+                <hr class="footer-end">
             </div>
         </header>
 
@@ -27,7 +64,7 @@
         </main>
 
         <footer>
-            ...
+
         </footer>
 
         <script src="{{ static('js/app.js') }}"></script>

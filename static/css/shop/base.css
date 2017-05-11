@@ -1,0 +1,71 @@
+.footer-main {
+    padding-left: 30px;
+}
+
+.footer-logo {
+    margin-top: 30px;
+}
+
+.footer-left {
+    padding-left: 20px;
+}
+
+.inline-bar, .inline-button {
+    display: inline;
+}
+
+.inline-button {
+    margin-left: 15px;
+}
+
+.footer-menu {
+    position: relative;
+    height: 140px;
+}
+
+.user-bar {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+}
+
+.user-bar-label {
+    position: absolute;
+    top: 45px;
+    right: 80px;
+}
+
+.menu {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+}
+
+.menu-item {
+    float: left;
+    padding: 0;
+}
+
+.menu-item a {
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: solid black 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    font-size: medium;
+}
+
+.menu-item a:hover {
+    color: dimgray;
+}
+
+.active-item {
+    font-weight: bold;
+}
+
+.footer-end {
+    margin-top: 0px;
+}
