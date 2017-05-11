@@ -1,0 +1,7 @@
+{% macro userbar(user) %}
+    {% if not user.is_authenticated() %}
+        <p>Здравствуйте, Гость!</p>
+    {% else %}
+        <p>Здравствуйте, <b>{{ user.username }}</b></p>
+    {% endif %}
+{% endmacro %}
