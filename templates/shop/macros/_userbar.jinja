@@ -1,7 +1,26 @@
 {% macro userbar(user) %}
-    {% if not user.is_authenticated() %}
-        <p>Здравствуйте, Гость!</p>
-    {% else %}
-        <p>Здравствуйте, <b>{{ user.username }}</b></p>
-    {% endif %}
+    <div class="user-bar-label">
+        {% if not user.is_authenticated() %}
+            <p>Здравствуйте, Гость!</p>
+        {% else %}
+            <p>Здравствуйте, <b>{{ user.username }}</b>!</p>
+        {% endif %}
+    </div>
+
+    <div class="user-bar">
+        <div class="dropdown">
+            <button type="button" class="btn btn-default inline-button dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu pull-right">
+                {% if not user.is_authenticated() %}
+                    <li><a href="{{ url('accounts:signin') }}">Вход</a></li>
+                    <li><a href="{{ url('accounts:signup') }}">Регистарция</a></li>
+                {% else %}
+                    <li><a href="{{ url('accounts:signin') }}">Корзина</a></li>
+                    <li><a href="{{ url('accounts:logout') }}">Выход</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 {% endmacro %}

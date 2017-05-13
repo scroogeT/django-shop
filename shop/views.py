@@ -1,7 +1,17 @@
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.shortcuts import render
+
 from shop.models import *
+
+
+def index(request):
+    return render(request, 'shop/index.jinja')
+
+
+def about(request):
+    return render(request, 'shop/about.jinja')
 
 
 class BookListView(ListView):

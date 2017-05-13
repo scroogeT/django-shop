@@ -28,32 +28,17 @@
                     </div>
 
                     <div class="footer-menu col-md-4 col-md-offset-2 row">
-                        <div class="user-bar-label">
-                            {{ userbar(request.user) }}
-                        </div>
-
-                        <div class="user-bar">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-default inline-button dropdown-toggle" data-toggle="dropdown">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                </button>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="#">Вход</a></li>
-                                    <li><a href="#">Регистарция</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        {{ userbar(request.user) }}
 
                         <nav class="menu">
                             <ul class="list-inline list-unstyled">
-                                <li class="menu-item active-item"><a href="#">Главная</a></li>
-                                <li class="menu-item"><a href="#">Каталог</a></li>
-                                <li class="menu-item"><a href="#">О нас</a></li>
+                                <li class="menu-item {% if request.path == url('shop:index') %}active-item{% endif %}"><a href="{{ url('shop:index') }}">Главная</a></li>
+                                <li class="menu-item {% if request.path == url('shop:book_list') %}active-item{% endif %}"><a href="{{ url('shop:book_list') }}">Каталог</a></li>
+                                <li class="menu-item {% if request.path == url('shop:about') %}active-item{% endif %}"><a href="{{ url('shop:about') }}">О нас</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
-
                 <div class="clearfix"></div>
                 <hr class="footer-end">
             </div>
