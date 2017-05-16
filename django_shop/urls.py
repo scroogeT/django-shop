@@ -21,7 +21,8 @@ from django_shop import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('shop.urls', namespace='shop', app_name='shop')),
-    url(r'^', include('accounts.urls', namespace='accounts', app_name='accounts'))
+    url(r'^', include('accounts.urls', namespace='accounts', app_name='accounts')),
+    url(r'^', include('cart.urls', namespace='cart', app_name='cart')),
 ]
 
 #Сбор статики
