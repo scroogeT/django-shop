@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     'django_jinja',
     'widget_tweaks',
-    'sorl.thumbnail',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE = [
