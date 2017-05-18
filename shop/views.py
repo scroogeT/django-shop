@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
 from shop.models import *
 
@@ -24,10 +24,12 @@ class BookListView(ListView):
 
     template_name = 'shop/book_list.jinja'
 
+    def get_queryset(self):
+        return Book.objects.filter(in_stock=True)
+
     def get_context_data(self, **kwargs):
-        c = super(BookListView, self).get_context_data(**kwargs)
-        user = self.request.user
-        return c
+        context = super(BookListView, self).get_context_data(**kwargs)
+        return context
 
 
 class AuthorListView(BookListView):
@@ -35,10 +37,8 @@ class AuthorListView(BookListView):
     Выборка каталога по автору
     """
 
-    #login_url = '/login/'
-    #redirect_field_name = ''
     def get_queryset(self):
-        return Book.objects.filter(authors__pk=self.kwargs['pk'])
+        return Book.objects.filter(authors__pk=self.kwargs['pk'], in_stock=True)
 
 
 class CategoryListView(BookListView):
@@ -46,7 +46,7 @@ class CategoryListView(BookListView):
     Выборка каталога по категории
     """
     def get_queryset(self):
-        return Book.objects.filter(categories__pk=self.kwargs['pk'])
+        return Book.objects.filter(categories__pk=self.kwargs['pk'], in_stock=True)
 
 
 class BookDeatilView(DetailView):
@@ -55,3 +55,24 @@ class BookDeatilView(DetailView):
     """
     model = Book
     template_name = 'shop/book_detail.jinja'
+
+
+###############################################
+# Views for shopping cart
+###############################################
+
+@login_required(login_url=reverse_lazy('accounts:signin'))
+def add_to_cart(request):
+    books = request.session.get('books', [])
+    book_id = request.GET.get('book_id')
+    books.append(book_id)
+    request.session['books'] = books
+
+    return render(request, 'shop/cart/add_to_cart_success.jinja', {'book_id': book_id})
+
+
+@login_required(login_url=reverse_lazy('shop:index'))
+def cart(request):
+    request.session['test'] = request.user.username
+
+    return render(request, 'shop/cart/cart.jinja')

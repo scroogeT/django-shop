@@ -17,7 +17,7 @@
                     <li><a href="{{ url('accounts:signin') }}">Вход</a></li>
                     <li><a href="{{ url('accounts:signup') }}">Регистарция</a></li>
                 {% else %}
-                    <li><a href="{{ url('accounts:signin') }}">Корзина</a></li>
+                    <li><a href="{{ url('shop:cart') }}">Корзина</a></li>
                     <li><a href="{{ url('accounts:logout') }}">Выход</a></li>
                 {% endif %}
             </ul>

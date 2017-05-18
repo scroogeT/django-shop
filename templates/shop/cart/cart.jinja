@@ -1,0 +1,10 @@
+{% extends 'shop/shop_base.jinja' %}
+
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+    {% for book in request.session.books %}
+        <p>{{ book }}</p>
+    {% endfor %}
+{% endblock %}

@@ -38,6 +38,5 @@ class SignInView(FormView):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        print("logout!!!!!!")
 
         return HttpResponseRedirect(reverse_lazy('shop:book_list'))

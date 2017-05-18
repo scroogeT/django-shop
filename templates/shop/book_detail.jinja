@@ -15,8 +15,14 @@
         </ul>
 
         <hr style="margin-top: 5px">
-        <button type="button" class="btn btn-lg btn-default {% if not book.in_stock %}disabled{% endif %}">
-            <span class="glyphicon glyphicon-shopping-cart"></span> | В корзину</button>
+
+        {% if book.in_stock %}
+            <form method="get" action="/cart_success">
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <button type="submit" class="btn btn-lg btn-default">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> | В корзину</button>
+            </form>
+        {% endif %}
 
     </div>
 
