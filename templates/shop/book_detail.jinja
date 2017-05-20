@@ -17,7 +17,7 @@
         <hr style="margin-top: 5px">
 
         {% if book.in_stock %}
-            <form method="get" action="/cart_success">
+            <form method="get" action="/cart_add">
                 <input type="hidden" name="book_id" value="{{ book.id }}">
                 <button type="submit" class="btn btn-lg btn-default">
                     <span class="glyphicon glyphicon-shopping-cart"></span> | В корзину</button>

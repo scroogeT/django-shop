@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
@@ -61,18 +62,41 @@ class BookDeatilView(DetailView):
 # Views for shopping cart
 ###############################################
 
-@login_required(login_url=reverse_lazy('accounts:signin'))
+@login_required(login_url=reverse_lazy('shop:index'))
 def add_to_cart(request):
     books = request.session.get('books', [])
     book_id = request.GET.get('book_id')
-    books.append(book_id)
-    request.session['books'] = books
 
-    return render(request, 'shop/cart/add_to_cart_success.jinja', {'book_id': book_id})
+    if book_id not in books:
+        books.append(book_id)
+        request.session['books'] = books
+
+        message = 'Книга успешно добавлена в корзину!'
+    else:
+        message = 'Ошибка: данная книга уже находится в корзине!'
+
+    return render(request, 'shop/cart/cart_action.jinja', {'message': message})
 
 
 @login_required(login_url=reverse_lazy('shop:index'))
-def cart(request):
-    request.session['test'] = request.user.username
+def remove_from_card(request):
+    books = request.session.get('books', [])
+    book_id = request.GET.get('book_id')
 
-    return render(request, 'shop/cart/cart.jinja')
+    if book_id in books:
+        books.remove(book_id)
+        request.session['books'] = books
+
+        message = 'Книга успешно удалена из корзины!'
+    else:
+        message = 'Ошибка: данной книги нет в корзине!'
+
+    return render(request, 'shop/cart/cart_action.jinja', {'message': message})
+
+
+class CartView(LoginRequiredMixin, BookListView):
+    login_url = reverse_lazy('accounts:signin')
+    template_name = 'shop/cart/cart.jinja'
+
+    def get_queryset(self):
+        return Book.objects.filter(id__in=self.request.session['books'])

@@ -4,6 +4,6 @@
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
-    <p>Книга успешно добавлена в корзину!</p>
-    <p>{{ book_id }}</p>
+    <p>{{ message }}</p>
+    <a href="{{ url('shop:cart') }}">Перейти в корзину</a>
 {% endblock %}

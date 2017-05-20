@@ -4,7 +4,8 @@
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
-    {% for book in request.session.books %}
-        <p>{{ book }}</p>
+    {% for book in books %}
+        <p>{{ book.title }}</p>
+        <a href="{{ url('shop:remove_from_card') }}?book_id={{ book.id | int }}">Удалить</a>
     {% endfor %}
 {% endblock %}
