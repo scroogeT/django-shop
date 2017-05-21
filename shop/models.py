@@ -57,3 +57,6 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:book_detail', kwargs={'pk': self.id})
+
+    def title_crop(self, lenght):
+        return self.title if len(self.title) < lenght else self.title[:lenght] + '...'
