@@ -24,4 +24,29 @@ Writen with Django 1.11 and PostgreSQL 9.5.6
     "db_port": "5432"
   }
   ```
-3. 
+  
+3. Modify in "django_shop/settings.py" allowed hosts:
+  
+  ```
+  ALLOWED_HOSTS = ['projects', '127.0.0.1']
+  ```
+  
+4. Apply migrations and create superuser:
+  
+  ```
+  python manage.py migrate
+  python manage.py createsuperuser
+  ```
+  
+5. Run via development Django Web-server:
+  
+  ```
+  python manage.py renserver
+  ```
+  
+  Or via WSGI HTTP server:
+  
+  ```
+  gunicorn django_shop.wsgi:application --bind 127.0.0.1:8000
+  ```
+  
