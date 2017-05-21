@@ -1,10 +1,10 @@
-#Simple online bookstore
+# Simple online bookstore
 Writen with Django 1.11 and PostgreSQL 9.5.6
 
 ![alt text](https://raw.githubusercontent.com/ruthus18/django-shop/master/screenshot.png)
 =============================
 
-Installation:
+## Installation:
 
 1. Create virtualenv and install dependencies:
 
