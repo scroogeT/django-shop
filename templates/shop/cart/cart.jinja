@@ -23,9 +23,9 @@
                 {% for book in books %}
                     <tr>
                         <td class="col-md-1">
-                            <div style="height: 70px">
+                            <div class="cart-image-container">
                                 <a href="{{ book.get_absolute_url() }}">
-                                    <img src="{{ book.photo.url }}" class="cover_preview center-block" style="max-height: 70px;" >
+                                    <img src="{{ book.photo.url }}" class="cover_preview center-block cart-image">
                                 </a>
                             </div>
                         </td>
@@ -51,5 +51,5 @@
 
 
 {% block stylesheet %}
-
+    <link href="{{ static('css/shop/cart/cart.css') }}" rel="stylesheet">
 {% endblock %}

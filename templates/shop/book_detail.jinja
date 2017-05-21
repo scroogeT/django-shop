@@ -4,17 +4,17 @@
 
 
 {% block content %}
-    <div class="col-md-4" style="margin-top: 20px">
+    <div class="col-md-4 photo-block">
         <img src="{{ book.photo.url }}" class="img-thumbnail" height="300">
         <ul class="list-group">
             {% for category in book.categories.all()     %}
-                <li class="list-group-item" style="border: none">
+                <li class="list-group-item category-item">
                     <a href="{{ category.get_absolute_url() }}">#{{ category }}</a>
                 </li>
             {% endfor %}
         </ul>
 
-        <hr style="margin-top: 5px">
+        <hr class="left-border">
 
         {% if book.in_stock %}
             <form method="get" action="/cart_add">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="col-md-8">
-        <h2 class="page-header" style="margin-top: 20px"><b>{{ book.title }}</b></h2>
+        <h2 class="page-header title"><b>{{ book.title }}</b></h2>
 
         <p><b>Авторы: </b>
             {% for author in book.authors.all() %}
@@ -61,4 +61,9 @@
         <div class="clearfix"></div>
 
     </div>
+{% endblock %}
+
+
+{% block stylesheet %}
+    <link href="{{ static('css/shop/book_detail.css') }}" rel="stylesheet">
 {% endblock %}

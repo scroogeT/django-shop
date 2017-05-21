@@ -8,21 +8,21 @@
     {% for book in books %}
         <div class="book_preview col-sm-3">
             {% if book.photo.url != None %}
-                <div class="center-block" style="height: 220px; width: 150px; border: 1px solid lightgray;">
+                <div class="center-block photo-container">
                     <a href="{{ book.get_absolute_url() }}">
-                        <img src="{{ book.photo.url }}" class="cover_preview center-block" style="max-width: 150px; max-height: 220px;" >
+                        <img src="{{ book.photo.url }}" class="cover_preview center-block photo">
                     </a>
                 </div>
             {% endif %}
 
-            <div class="description center-block" style="height: 75px; width: 150px; margin-bottom: 30px;">
+            <div class="description center-block">
                 <div class="authors">
                     {% for author in book.authors.all()[:2] %}
                         <a href="{{ author.get_absolute_url() }}">{{ author }}</a><br>
                     {% endfor %}
                 </div>
 
-                <p style="font-size: 13px">{{ book.title_crop(40) }}</p>
+                <p class="title-font">{{ book.title_crop(40) }}</p>
             </div>
         </div>
     {% endfor %}
@@ -30,4 +30,9 @@
     <div class="clearfix"></div>
 
     {{ pagination(page_obj) }}
+{% endblock %}
+
+
+{% block stylesheet %}
+    <link href="{{ static('css/shop/book_list.css') }}" rel="stylesheet">
 {% endblock %}
