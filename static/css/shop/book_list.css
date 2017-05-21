@@ -1,0 +1,20 @@
+.photo-container {
+    height: 220px;
+    width: 150px;
+    border: 1px solid lightgray;
+}
+
+.photo {
+    max-width: 150px;
+    max-height: 220px;
+}
+
+.description {
+    height: 75px;
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+.title-font {
+    font-size: 13px;
+}
