@@ -99,4 +99,7 @@ class CartView(LoginRequiredMixin, BookListView):
     template_name = 'shop/cart/cart.jinja'
 
     def get_queryset(self):
+        if not 'books' in self.request.session:
+            self.request.session['books'] = []
+
         return Book.objects.filter(id__in=self.request.session['books'])

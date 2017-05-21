@@ -4,8 +4,52 @@
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
-    {% for book in books %}
-        <p>{{ book.title }}</p>
-        <a href="{{ url('shop:remove_from_card') }}?book_id={{ book.id | int }}">Удалить</a>
-    {% endfor %}
+    {% if not books %}
+        <p>В вашей корзине нет книг.</p>
+    {% else %}
+        <table class="table table-hover display-table">
+            <thead>
+                <tr>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-6">Название</th>
+                    <th class="col-md-1 text-center">Год</th>
+                    <th class="col-md-2 text-center">Издательство</th>
+                    <th class="col-md-1 text-center">Цена</th>
+                    <th class="col-md-1"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td class="col-md-1">
+                            <div style="height: 70px">
+                                <a href="{{ book.get_absolute_url() }}">
+                                    <img src="{{ book.photo.url }}" class="cover_preview center-block" style="max-height: 70px;" >
+                                </a>
+                            </div>
+                        </td>
+                        <td class="col-md-6"><a href="{{ book.get_absolute_url() }}">{{ book.title }}</a></td>
+                        <td class="col-md-1 text-center">{{ book.year }}</td>
+                        <td class="col-md-2 text-center">{{ book.publisher }}</td>
+                        <td class="col-md-1 text-center">{{ book.price }}</td>
+                        <td class="col-md-1 text-right">
+                            <form method="get" action="/cart_remove">
+                                <input type="hidden" name="book_id" value="{{ book.id }}">
+
+                                <button type="submit" class="btn btn-sm btn-default">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
+
+
+{% block stylesheet %}
+
 {% endblock %}
