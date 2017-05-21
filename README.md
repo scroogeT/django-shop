@@ -38,14 +38,14 @@ Writen with Django 1.11 and PostgreSQL 9.5.6
   python manage.py createsuperuser
   ```
   
-5. Run
-  * via development Django Web-server:
+5. Run with
+  * development Django Web-server:
   
   ```
   python manage.py renserver
   ```
   
-  * or via WSGI HTTP server:
+  * or WSGI HTTP server:
   
   ```
   gunicorn django_shop.wsgi:application --bind 127.0.0.1:8000
