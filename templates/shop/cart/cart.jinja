@@ -1,9 +1,10 @@
 {% extends 'shop/shop_base.jinja' %}
 
-
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
+    <h3 class="page-title"><b>Корзина</b> </h3>
+
     {% if not books %}
         <p>В вашей корзине нет книг.</p>
     {% else %}
@@ -44,8 +45,25 @@
                         </td>
                     </tr>
                 {% endfor %}
+
+                <tr>
+                    <td class="col-md-1"></td>
+                    <td class="col-md-6"><b>Итоговая цена:</b></td>
+                    <td class="col-md-1"></td>
+                    <td class="col-md-2"></td>
+                    <td class="col-md-1 text-center"><b>{{ request.total_price['price__sum'] }}</b></td>
+                    <td class="col-md-1"></td>
+                </tr>
             </tbody>
         </table>
+
+        <hr>
+
+        <div class="col-md-3 col-md-offset-9">
+            <form method="get" action="/cart_checkout">
+                <button type="submit" class="btn btn-lg  btn-default">Оформить заказ</button>
+            </form>
+        </div>
     {% endif %}
 {% endblock %}
 

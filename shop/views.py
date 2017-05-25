@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.db.models import Sum
 
 from shop.models import *
 
@@ -29,7 +30,7 @@ class BookListView(ListView):
         return Book.objects.filter(in_stock=True)
 
     def get_context_data(self, **kwargs):
-        context = super(BookListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         return context
 
 
@@ -62,7 +63,7 @@ class BookDeatilView(DetailView):
 # Views for shopping cart
 ###############################################
 
-@login_required(login_url=reverse_lazy('shop:index'))
+@login_required(login_url=reverse_lazy('accounts:signin'))
 def add_to_cart(request):
     books = request.session.get('books', [])
     book_id = request.GET.get('book_id')
@@ -102,4 +103,6 @@ class CartView(LoginRequiredMixin, BookListView):
         if not 'books' in self.request.session:
             self.request.session['books'] = []
 
-        return Book.objects.filter(id__in=self.request.session['books'])
+        book_set = Book.objects.filter(id__in=self.request.session['books'])
+        self.request.total_price = book_set.aggregate(Sum('price'))
+        return book_set

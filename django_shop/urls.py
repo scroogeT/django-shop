@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^', include('accounts.urls', namespace='accounts', app_name='accounts')),
 ]
 
-#Сбор статики
+# Сбор статики
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

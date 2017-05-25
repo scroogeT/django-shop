@@ -16,7 +16,7 @@ class SignUpView(FormView):
 
     def form_valid(self, form):
         form.save()
-        return super(SignUpView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 def signup_success(request):
@@ -32,7 +32,7 @@ class SignInView(FormView):
         self.user = form.get_user()
 
         login(self.request, self.user)
-        return super(SignInView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class LogoutView(View):
